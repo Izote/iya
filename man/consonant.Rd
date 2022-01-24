@@ -2,17 +2,22 @@
 % Please edit documentation in R/phoneme.R
 \name{consonant}
 \alias{consonant}
-\title{Creates a new consonant object.}
+\title{Create a new consonant object.}
 \usage{
 consonant(ipa)
 }
 \arguments{
-\item{ipa}{A named list referencing the vowel's IPA representation and
-articulation as length 1 and 2 character vectors respectively.}
+\item{ipa}{A named list following the format \code{list(representation = character(), articulation = character())} with each element representing
+the consonant's IPA representation (e.g. "a", "p", etc.) and phonetic dimensions respectively.}
 }
 \value{
 A consonant object.
 }
 \description{
-Creates a new consonant object.
+Takes IPA data, formatted as a named list of character vectors, and returns a consonant object. A consonant object is a subclass of the more general phoneme object.
+}
+\examples{
+ipa_data <- list(representation = "p", articulation = c("voiceless", "bilabial", "plosive"))
+p <- consonant(ipa_data)
+
 }
