@@ -12,6 +12,7 @@ new_phoneme <- function(x, class = character()) {
   )
 }
 
+
 #' Constructor for the consonant (sub)class.
 #'
 #' @param x A named list containing IPA data.
@@ -21,6 +22,7 @@ new_phoneme <- function(x, class = character()) {
 new_consonant <- function(x) {
   new_phoneme(x, class = "consonant")
 }
+
 
 #' Constructor for the vowel (sub)class.
 #'
@@ -32,6 +34,7 @@ new_consonant <- function(x) {
 new_vowel <- function(x) {
   new_phoneme(x, class = "vowel")
 }
+
 
 #' Validates a phoneme class object.
 #'
@@ -61,41 +64,47 @@ validate_phoneme <- function(x) {
     stop("Articulation provided to constructor is not a character vector.")
   }
 
-  if (length(x[["articulation"]]) != 2) {
-    stop("Articulation vector must be of length 2.")
+  if (length(x[["articulation"]]) != 3) {
+    stop("Articulation vector must be of length 3.")
   }
 
   x
 }
 
-#' Creates a new phoneme class object.
-#'
-#' @param ipa A named list referencing the phoneme's IPA representation and articulation.
-#'
-#' @return A phoneme class object.
-#'
-phoneme <- function(ipa) {
-  validate_phoneme(new_phoneme(ipa))
-}
 
-#' Creates a new consonant object.
+#' Create a new consonant object.
 #'
-#' @param ipa A named list referencing the vowel's IPA representation and
-#' articulation as length 1 and 2 character vectors respectively.
+#' Takes IPA data, formatted as a named list of character vectors, and returns a consonant object. A consonant object is a subclass of the more general phoneme object.
+#'
+#' @param ipa A named list following the format `list(representation = character(), articulation = character())` with each element representing
+#' the consonant's IPA representation (e.g. "a", "p", etc.) and phonetic dimensions respectively.
 #'
 #' @return A consonant object.
+#'
+#' @examples
+#' ipa_data <- list(representation = "p", articulation = c("voiceless", "bilabial", "plosive"))
+#' p <- consonant(ipa_data)
+#'
 #' @export
 #'
 consonant <- function(ipa) {
   validate_phoneme(new_consonant(ipa))
 }
 
-#' Title
+
+#' Create a new vowel object.
 #'
-#' @param ipa A named list referencing the consonant's IPA representation and
-#' articulation as length 1 and 2 character vectors respectively.
+#' Takes IPA data, formatted as a named list of character vectors, and returns a vowel object. A consonant object is a subclass of the more general phoneme object.
+#'
+#' @param ipa A named list following the format `list(representation = character(), articulation = character())` with each element representing
+#' the vowel's IPA representation (e.g. "a", "p", etc.) and phonetic dimensions respectively.
 #'
 #' @return A vowel object.
+#'
+#' @examples
+#' ipa_data <- list(representation = "e", articulation = c("close-mid", "front", "unrounded"))
+#' e <- vowel(ipa_data)
+#'
 #' @export
 #'
 vowel <- function(ipa) {
