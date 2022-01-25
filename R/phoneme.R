@@ -6,10 +6,7 @@
 #' @return A phoneme class object.
 #'
 new_phoneme <- function(x, class = character()) {
-  structure(
-    x,
-    class = c(class, "phoneme")
-  )
+  structure(x, class = c(class, "phoneme"))
 }
 
 
