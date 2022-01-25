@@ -7,17 +7,19 @@
 consonant(ipa)
 }
 \arguments{
-\item{ipa}{A named list following the format \code{list(representation = character(), articulation = character())} with each element representing
-the consonant's IPA representation (e.g. "a", "p", etc.) and phonetic dimensions respectively.}
+\item{ipa}{A list of two character vectors. The first element provides
+the IPA representation for the desired phoneme and the second provides its
+articulation as a character vector of length 3.}
 }
 \value{
 A consonant object.
 }
 \description{
-Takes IPA data, formatted as a named list of character vectors, and returns a consonant object. A consonant object is a subclass of the more general phoneme object.
+Takes IPA data, as a list of character vectors, returning a consonant object.
+A consonant object is a subclass of the more general phoneme object.
 }
 \examples{
-ipa_data <- list(representation = "p", articulation = c("voiceless", "bilabial", "plosive"))
+ipa_data <- list("p", c("voiceless", "bilabial", "plosive"))
 p <- consonant(ipa_data)
 
 }

@@ -7,17 +7,19 @@
 vowel(ipa)
 }
 \arguments{
-\item{ipa}{A named list following the format \code{list(representation = character(), articulation = character())} with each element representing
-the vowel's IPA representation (e.g. "a", "p", etc.) and phonetic dimensions respectively.}
+\item{ipa}{A list of two character vectors. The first element provides
+the IPA representation for the desired phoneme and the second provides its
+articulation as a character vector of length 3.}
 }
 \value{
-A vowel object.
+A consonant object.
 }
 \description{
-Takes IPA data, formatted as a named list of character vectors, and returns a vowel object. A consonant object is a subclass of the more general phoneme object.
+Takes IPA data, as a list of character vectors, returning a vowel object.
+A vowel object is a subclass of the more general phoneme object.
 }
 \examples{
-ipa_data <- list(representation = "e", articulation = c("close-mid", "front", "unrounded"))
+ipa_data <- list("e", c("close-mid", "front", "unrounded"))
 e <- vowel(ipa_data)
 
 }
