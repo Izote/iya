@@ -1,6 +1,6 @@
 #' Constructor for the phoneme class.
 #'
-#' @param x A named list containing IPA data.
+#' @param x A list containing IPA data.
 #' @param class A single-element character vector - "consonant" or "vowel".
 #'
 #' @return A phoneme class object.
@@ -12,7 +12,7 @@ new_phoneme <- function(x, class = character()) {
 
 #' Constructor for the consonant (sub)class.
 #'
-#' @param x A named list containing IPA data.
+#' @param x A list containing IPA data.
 #'
 #' @return A consonant (sub)class object.
 #'
@@ -23,7 +23,7 @@ new_consonant <- function(x) {
 
 #' Constructor for the vowel (sub)class.
 #'
-#' @param x A named list containing IPA data.
+#' @param x A list containing IPA data.
 #'
 #' @return A vowel (sub)class object
 #' @keywords internal
