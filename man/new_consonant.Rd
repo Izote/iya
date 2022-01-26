@@ -7,7 +7,7 @@
 new_consonant(x)
 }
 \arguments{
-\item{x}{A named list containing IPA data.}
+\item{x}{A list containing IPA data.}
 }
 \value{
 A consonant (sub)class object.

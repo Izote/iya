@@ -42,19 +42,19 @@ new_vowel <- function(x) {
 #'
 validate_phoneme <- function(x) {
   if (!is.list(x)) {
-      stop("Provided argument is not a list.")
+      stop("Constructor could not bind provided arguments to a list.")
   }
 
-  if (length(x) != 2) {
-    stop("Provided list must be of length 2.")
+  if (length(x) < 2) {
+    stop("Constructor takes 2 arguments. Insufficient arguments provided.")
+  }
+
+  if (length(x) > 2) {
+    stop("Constructor takes 2 arguments. Too many arguments provided.")
   }
 
   if (!all(sapply(x, is.character))) {
-    stop("Provided list must only contain character vectors.")
-  }
-
-  if (length(x[[2]]) != 3) {
-    stop("Second element of list must be a vector of length 3.")
+    stop("Constructor only takes character vectors.")
   }
 
   x
@@ -66,21 +66,24 @@ validate_phoneme <- function(x) {
 #' Takes IPA data as a list of character vectors and returns a consonant object.
 #' A consonant object is a subclass of the more general phoneme object.
 #'
-#' @param ipa A list of two character vectors. The first element provides
-#' the IPA representation for the desired phoneme and the second provides its
-#' articulation as a character vector of length 3.
+#' @param ipa The IPA representation of the consonant as a length 1 character
+#' vector. Unicode escape sequences can be utilized for various diacritic marks.
 #'
+#' @param description A description of this consonant's linguistic qualities
+#' as a character vector. Each discrete descriptive quality included must map
+#' to a single element of the vector.
+#'
+#' For example, `c("voiced", "bilabial", "nasal")` would be a valid vector
 #'
 #' @return A consonant object.
 #'
 #' @examples
-#' ipa_data <- list("p", c("voiceless", "bilabial", "plosive"))
-#' p <- consonant(ipa_data)
+#' p <- consonant("p", c("voiceless", "bilabial", "plosive"))
 #'
 #' @export
 #'
-consonant <- function(ipa) {
-  validate_phoneme(new_consonant(ipa))
+consonant <- function(ipa, description) {
+  validate_phoneme(new_consonant(list(ipa, description)))
 }
 
 
@@ -89,19 +92,22 @@ consonant <- function(ipa) {
 #' Takes IPA data as a list of character vectors and returns a vowel object.
 #' A vowel object is a subclass of the more general phoneme object.
 #'
-#' @param ipa A list of two character vectors. The first element provides
-#' the IPA representation for the desired phoneme and the second provides its
-#' articulation as a character vector of length 3.
+#' @param ipa The IPA representation of the vowel as a length 1 character
+#' vector. Unicode escape sequences can be utilized for various diacritic marks.
 #'
+#' @param description A description of this vowel's linguistic qualities
+#' as a character vector. Each discrete descriptive quality included must map
+#' to a single element of the vector.
 #'
-#' @return A consonant object.
+#' For example, `c("close", "front", "unrounded")` would be a valid vector
+#'
+#' @return A vowel object.
 #'
 #' @examples
-#' ipa_data <- list("e", c("close-mid", "front", "unrounded"))
-#' e <- vowel(ipa_data)
+#' a <- vowel("a", c("open", "central", "unrounded"))
 #'
 #' @export
 #'
-vowel <- function(ipa) {
-  validate_phoneme(new_vowel(ipa))
+vowel <- function(ipa, description) {
+  validate_phoneme(new_vowel(list(ipa, description)))
 }

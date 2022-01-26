@@ -4,22 +4,26 @@
 \alias{vowel}
 \title{Create a new vowel object.}
 \usage{
-vowel(ipa)
+vowel(ipa, description)
 }
 \arguments{
-\item{ipa}{A list of two character vectors. The first element provides
-the IPA representation for the desired phoneme and the second provides its
-articulation as a character vector of length 3.}
+\item{ipa}{The IPA representation of the vowel as a length 1 character
+vector. Unicode escape sequences can be utilized for various diacritic marks.}
+
+\item{description}{A description of this vowel's linguistic qualities
+as a character vector. Each discrete descriptive quality included must map
+to a single element of the vector.
+
+For example, \code{c("close", "front", "unrounded")} would be a valid vector}
 }
 \value{
-A consonant object.
+A vowel object.
 }
 \description{
-Takes IPA data, as a list of character vectors, returning a vowel object.
+Takes IPA data as a list of character vectors and returns a vowel object.
 A vowel object is a subclass of the more general phoneme object.
 }
 \examples{
-ipa_data <- list("e", c("close-mid", "front", "unrounded"))
-e <- vowel(ipa_data)
+a <- vowel("a", c("open", "central", "unrounded"))
 
 }

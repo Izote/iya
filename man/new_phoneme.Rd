@@ -7,7 +7,7 @@
 new_phoneme(x, class = character())
 }
 \arguments{
-\item{x}{A named list containing IPA data.}
+\item{x}{A list containing IPA data.}
 
 \item{class}{A single-element character vector - "consonant" or "vowel".}
 }
