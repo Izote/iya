@@ -42,7 +42,7 @@ new_vowel <- function(x) {
 #'
 validate_phoneme <- function(x) {
   if (!is.list(x)) {
-      stop("Constructor could not bind provided arguments to a list.")
+    stop("Constructor could not bind provided arguments to a list.")
   }
 
   if (length(x) < 2) {
@@ -83,7 +83,7 @@ validate_phoneme <- function(x) {
 #' @export
 #'
 consonant <- function(ipa, description) {
-  validate_phoneme(new_consonant(list(ipa, description)))
+  validate_phoneme(new_consonant(list(ipa = ipa, description = description)))
 }
 
 
@@ -109,5 +109,5 @@ consonant <- function(ipa, description) {
 #' @export
 #'
 vowel <- function(ipa, description) {
-  validate_phoneme(new_vowel(list(ipa, description)))
+  validate_phoneme(new_vowel(list(ipa = ipa, description = description)))
 }
